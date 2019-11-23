@@ -1,10 +1,11 @@
 Remote MySQL
 ========================
 
-This uses [mysql][1] package from NPM. The [docs][2] are here too.
+ - Moved to [mysql2][2] from [mysql][1]. 
+ - ORM used is [Sequelize][3] version 5.
 
 ```
-npm install mysql --save
+npm install --save mysql2
 ```
 
 
@@ -16,4 +17,5 @@ npm install mysql --save
 
 
 [1]: https://www.npmjs.com/package/mysql
-[2]: https://github.com/mysqljs/mysql#table-of-contents
+[2]: https://www.npmjs.com/package/mysql2
+[3]: https://sequelize.org/v5/manual/getting-started.html

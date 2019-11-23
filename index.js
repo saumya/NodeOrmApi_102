@@ -1,7 +1,7 @@
 console.log('Remote SQL');
 
 var config = require('./remotemysql.config');
-var mysql = require('mysql');
+var mysql = require('mysql2');
 
 
 //console.log(config);

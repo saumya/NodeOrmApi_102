@@ -9,6 +9,7 @@
   "author": "saumya",
   "license": "MIT",
   "dependencies": {
-    "mysql": "^2.17.1"
+    "mysql2": "^2.0.1",
+    "sequelize": "^5.21.2"
   }
 }
