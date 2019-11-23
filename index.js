@@ -2,13 +2,11 @@ console.log('Remote SQL');
 
 var config = require('./remotemysql.config');
 var mysql = require('mysql2');
+const Sequelize = require('sequelize');
 
 
 //console.log(config);
-
-console.log('+--------------- START ---------------------');
-
-//var mysql = require('mysql');
+/*
 var connection = mysql.createConnection({
     host: config.host,
     port: config.port,
@@ -24,20 +22,36 @@ connection.connect( function(error){
     }
     console.log('connected as id ' + connection.threadId);
 } );
-//TODO
-/*
+
 connection.query('SELECT 1 + 1 AS solution', function (error, results, fields) {
     if (error) throw error;
     console.log('The solution is: ', results[0].solution);
   });
-*/
-/*
-connection.query('SELECCT * from *', function(error,results,fields){
-    if(error) throw error;
-    console.log(results);
-});
-*/
 //
 connection.end();
+*/
+
+// Sequelize
+const sequelize = new Sequelize(config.database, config.user, config.password, {
+    host: config.host,
+    port: config.port,
+    dialect: 'mysql',
+    pool: {
+        max: 5,
+        min: 0,
+        acquire: 30000,
+        idle: 10000
+     }
+  });
+sequelize
+    .authenticate()
+    .then(() => {
+        console.log('Connection has been established successfully.');
+    })
+    .catch(err => {
+        console.log('+--- Sequelize - Error ---------------');
+        console.error('Unable to connect to the database:', err);
+    });
+sequelize.close();
 
 console.log('+---------------- END ----------------------');

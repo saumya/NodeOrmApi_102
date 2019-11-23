@@ -6,8 +6,9 @@ Remote MySQL
 
 ```
 npm install --save mysql2
+npm install --save sequelize
 ```
-
+Running the basic applciation `node .`
 
 
 
