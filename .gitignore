@@ -2,4 +2,4 @@
 node_modules
 # files
 info.md
-remotemysql.config.js
+#remotemysql.config.js
