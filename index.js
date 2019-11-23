@@ -6,7 +6,7 @@ const Sequelize = require('sequelize');
 
 
 //console.log(config);
-/*
+
 var connection = mysql.createConnection({
     host: config.host,
     port: config.port,
@@ -29,8 +29,8 @@ connection.query('SELECT 1 + 1 AS solution', function (error, results, fields) {
   });
 //
 connection.end();
-*/
 
+/*
 // Sequelize
 const sequelize = new Sequelize(config.database, config.user, config.password, {
     host: config.host,
@@ -53,5 +53,5 @@ sequelize
         console.error('Unable to connect to the database:', err);
     });
 sequelize.close();
-
+*/
 console.log('+---------------- END ----------------------');
