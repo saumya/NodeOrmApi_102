@@ -1,0 +1,14 @@
+{
+  "name": "2_remotesql",
+  "version": "1.0.0",
+  "description": "Remote database connection",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "saumya",
+  "license": "MIT",
+  "dependencies": {
+    "mysql": "^2.17.1"
+  }
+}
