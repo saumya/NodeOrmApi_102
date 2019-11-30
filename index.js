@@ -1,6 +1,6 @@
 console.log('Remote SQL');
 
-var config = require('./remotemysql.config');
+var config = require('./remotemysql.config.sample');
 var mysql = require('mysql2');
 const Sequelize = require('sequelize');
 
