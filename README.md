@@ -20,7 +20,9 @@ Now running the application can be done by `node app.js` or `npm start`.
 
 
 
-
+### API
+ 
+ - /initModels : first call to initialise the Database
 
 
 
