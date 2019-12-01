@@ -29,8 +29,9 @@ var ModelPresent = null;
 const initModelFactory = function(onSuccess,onFail){
 	
 	console.log('ModelFactory: initModelfactory:');
+	console.log('ModelFactoryVersion', ModelFactoryVersion);
 
-	this.sequelize = new Sequelize(config.database, config.user, config.password, {
+	sequelize = new Sequelize(config.database, config.user, config.password, {
     host: config.host,
     port: config.port,
     dialect: 'mysql',
@@ -41,7 +42,7 @@ const initModelFactory = function(onSuccess,onFail){
         idle: 10000
      }
   });
-  this.sequelize
+  sequelize
     .authenticate()
     .then(() => {
     	console.log('+--- Sequelize ---------------');
@@ -64,7 +65,7 @@ const getORMRef = function(){
 	console.log('this.ModelFactoryVersion', this.ModelFactoryVersion); // just checking
 	console.log('ModelFactoryVersion', ModelFactoryVersion); // just checking
 	
-	return this.sequelize;
+	return sequelize;
 }
 
 // ---------------------------------------------------------------------------------------
@@ -74,13 +75,14 @@ const getORMRef = function(){
 
 const initTheModels = function(){
 	console.log('initTheModels');
-	//console.log('sequelize',this.sequelize);
+	//console.log('this.sequelize',this.sequelize);
+	//console.log('sequelize',sequelize);
 	
 	
-  ModelBatch = getBatchModel(this.sequelize);
-  ModelPerson = getPersonModel(this.sequelize);
-  ModelDay = getDayModel(this.sequelize);
-  ModelPresent = getPresentModel(this.sequelize);
+  ModelBatch = getBatchModel(sequelize);
+  ModelPerson = getPersonModel(sequelize);
+  ModelDay = getDayModel(sequelize);
+  ModelPresent = getPresentModel(sequelize);
 
 	ModelBatch.sync({force:true}).then(()=>{
       // Now the `batches` table in the database corresponds to the model definition
