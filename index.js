@@ -38,6 +38,21 @@ connection.query('SELECT 1 + 1 AS solution', function (error, results, fields) {
 connection.end();
 */
 
+const modelFactory = require('./model/modelFactory');
+console.log( modelFactory.initModelFactory(onModelInitDone,onModelInitFail) );
+
+function onModelInitDone(sequelize){
+    console.log('index.js: onModelInitDone');
+    //console.log('sequelize',sequelize);
+    sequelize = modelFactory.getORMRef();
+    console.log(sequelize);
+}
+function onModelInitFail(error){
+    console.log('index.js: onModelInitFail');
+    console.log('error',error);
+}
+
+/*
 // Sequelize
 const sequelize = new Sequelize(config.database, config.user, config.password, {
     host: config.host,
@@ -106,5 +121,6 @@ sequelize
 //sequelize.close();
 // The above call to close(), throws an error as shown below
 // Error - Unable to connect to the database: Error: pool is draining and cannot accept work
+*/
 
 console.log('+---------------- END ----------------------');
