@@ -1,5 +1,6 @@
 console.log('Remote SQL');
 
+/*
 var config = require('./remotemysql.config.sample');
 var mysql = require('mysql2');
 const Sequelize = require('sequelize');
@@ -8,6 +9,7 @@ const getBatchModel = require('./model/model.batch');
 const getPersonModel = require('./model/model.person');
 const getDayModel = require('./model/model.day');
 const getPresentModel = require('./model/model.present');
+*/
 
 //const BatchModel = require('./model/model.batch');
 
