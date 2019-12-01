@@ -11,6 +11,14 @@ npm install --save sequelize
 Running the basic applciation `node .`
 
 
+## UI Application
+
+```
+npm install --save express
+```
+Now running the application can be done by `node app.js` or `npm start`.
+
+
 
 
 
