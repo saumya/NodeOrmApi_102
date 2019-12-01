@@ -44,8 +44,9 @@ console.log( modelFactory.initModelFactory(onModelInitDone,onModelInitFail) );
 function onModelInitDone(sequelize){
     console.log('index.js: onModelInitDone');
     //console.log('sequelize',sequelize);
-    sequelize = modelFactory.getORMRef();
-    console.log(sequelize);
+    //sequelize = modelFactory.getORMRef();
+    //console.log(sequelize);
+    modelFactory.initTheModels();
 }
 function onModelInitFail(error){
     console.log('index.js: onModelInitFail');
