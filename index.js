@@ -4,6 +4,13 @@ var config = require('./remotemysql.config.sample');
 var mysql = require('mysql2');
 const Sequelize = require('sequelize');
 
+const getBatchModel = require('./model/model.batch');
+const getPersonModel = require('./model/model.person');
+const getDayModel = require('./model/model.day');
+const getPresentModel = require('./model/model.present');
+
+//const BatchModel = require('./model/model.batch');
+
 
 //console.log(config);
 /*
@@ -48,7 +55,48 @@ sequelize
     .then(() => {
         console.log('+--- Sequelize ---------------');
         console.log('Sequelize: Connection has been established successfully.');
-        sequelize.close().then(function(result){ console.log('Sequelize: Connection closed.') }).catch(function(error){ console.log(error) });
+        //sequelize.close().then(function(result){ console.log('Sequelize: Connection closed.') }).catch(function(error){ console.log(error) });
+        
+        var ModelBatch = getBatchModel(sequelize);
+        var ModelPerson = getPersonModel(sequelize);
+        var ModelDay = getDayModel(sequelize);
+        var ModelPresent = getPresentModel(sequelize);
+
+        //var ModelBatch = new BatchModel(sequelize);
+        //console.log(ModelBatch);
+        ModelBatch.sync({force:true}).then(()=>{
+            // Now the `batches` table in the database corresponds to the model definition
+            console.log('Sequelize: Synced! ModelBatch');
+            console.log(ModelBatch);
+        }).catch(err => {
+            console.log('+--- Sequelize - Error ---------------');
+            console.error('Sequelize: Model Error: ModelBatch: ', err);    
+        });
+        //
+        ModelPerson.sync({force:true}).then(()=>{
+            console.log('Sequelize: Synced! ModelPerson');
+            console.log(ModelPerson);
+        }).catch(err=>{
+            console.log('+--- Sequelize - Error ---------------');
+            console.error('Sequelize: Model Error: ModelPerson: ', err);
+        });
+        //
+        ModelDay.sync({force:true}).then( () => {
+            console.log('Sequelize: Synced! ModelDay');
+            console.log(ModelDay);
+        }).catch(err => {
+            console.log('+--- Sequelize - Error ---------------');
+            console.error('Sequelize: Model Error: ModelDay: ', err);
+        });
+        //
+        ModelPresent.sync({force:true}).then(()=>{
+            console.log('Sequelize: Synced! ModelPresent');
+            console.log(ModelPresent);
+        }).catch(err=>{
+            console.log('+--- Sequelize - Error ---------------');
+            console.error('Sequelize: Model Error: ModelPresent: ', err);
+        });
+
     })
     .catch(err => {
         console.log('+--- Sequelize - Error ---------------');
