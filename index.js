@@ -41,7 +41,7 @@ connection.end();
 */
 
 const modelFactory = require('./model/modelFactory');
-console.log( modelFactory.initModelFactory(onModelInitDone,onModelInitFail) );
+modelFactory.initModelFactory(onModelInitDone,onModelInitFail);
 
 function onModelInitDone(sequelize){
     console.log('index.js: onModelInitDone');
@@ -50,7 +50,7 @@ function onModelInitDone(sequelize){
     //sequelize = modelFactory.getORMRef();
     //console.log(sequelize);
     
-    modelFactory.initTheModels();
+    //modelFactory.initTheModels();
 }
 function onModelInitFail(error){
     console.log('index.js: onModelInitFail');
