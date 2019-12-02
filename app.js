@@ -13,7 +13,9 @@ const express = require('express');
 const app = express();
 const port = 3000;
 //
-var bodyParser = require("body-parser");
+//var bodyParser = require("body-parser");
+// body-parser is now included in Express as of 4.16
+// ref: Changelog: https://expressjs.com/en/changelog/4x.html
 //
 //----------------------------------------------------------------------
 // CORS : enabling 
@@ -25,8 +27,8 @@ app.use(function(req, res, next) {
   next();
 });
 // Adding body-parser
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
+//app.use(bodyParser.urlencoded({ extended: false }));
+//app.use(bodyParser.json());
 //----------------------------------------------------------------------
 //
 const modelFactory = require('./model/modelFactory');
