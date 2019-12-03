@@ -96,6 +96,11 @@ app.post('/createGroup', (request,response)=>{
 	console.log('app.js: API: CreateGroup');
 	//console.log(modelFactory);
 	console.log( 'request.body=',request.body );
+  //
+  var newGroupName = request.body.groupName;
+  //
+  modelFactory.createGroupWithName(newGroupName);
+  //
 	var tNow = new Date();
 	var sTime = tNow.getHours()+':'+tNow.getMinutes()+':'+tNow.getSeconds()+':'+tNow.getMilliseconds();
 	var result = {

@@ -20,6 +20,62 @@ npm install --save express
 Now running the application can be done by `node app.js` or `npm start`.
 
 
+## UI code reference
+
+The data to be sent
+```
+var jsonData = JSON.stringify({
+			"calledAt" : "called time",
+			"groupName": "UI Application"
+		});
+```
+
+Fetch API
+```
+			// using Fetch API
+		  var fetchData = {
+		  	method:'POST',
+		  	body:JSON.stringify({"one":"test","two":"testTwo","fromUI":"Yay!"}),
+		  	mode: 'cors',
+		  	headers:new Headers({
+		  		'Content-Type': 'application/json'
+		  	})
+		  };
+		  fetch(requestURL,fetchData).then(function(resultData){
+		  	resultData.json()
+		  	.then(function(rData){
+		  		console.log(rData);
+		  	})
+		  	.catch(function(error1){
+		  		console.log(error1);
+		  	});
+		  }).catch(function(error){
+		  	console.log(error);
+		  });
+```
+
+jQuery Ajax
+```
+			$.ajax({
+			  method: "POST",
+			  url: requestURL,
+			  contentType: "application/json",
+			  dataType: "json",
+			  data: jsonData,
+			  cache: false
+			})
+			.always(function( data ){
+				console.log(data);
+			})
+		  .done(function( msg ) {
+		  	console.log(msg);
+		  })
+		  .fail(function( err ){
+		  	console.log(err);
+		  });
+```
+
+
 
 ### API
  

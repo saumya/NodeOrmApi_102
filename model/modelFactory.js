@@ -119,8 +119,30 @@ const initTheModels = function(){
   
 }
 
+//Create a new Group
+const createGroupWithName = function(newGroupName){
+  console.log('modelFactory: createGroupWithName=',newGroupName);
+  
+  var ModelBatch = getBatchModel(sequelize);
+  
+  ModelBatch.create({
+    name:newGroupName
+  }).then(function(data){
+    console.log('modelFactory: createGroupWithName: SUCCESS:');
+    //console.log(data);
+  }).catch(function(error){
+    console.log('modelFactory: createGroupWithName: catch:');
+    console.log(error);
+  });
+  
+}
 
 
-module.exports = { initModelFactory, getORMRef, initTheModels };
+module.exports = { 
+  initModelFactory, 
+  getORMRef, 
+  initTheModels,
+  createGroupWithName 
+};
 
 //
