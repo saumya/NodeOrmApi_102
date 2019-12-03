@@ -97,9 +97,10 @@ app.post('/createGroup', (request,response)=>{
 	//console.log(modelFactory);
 	console.log( 'request.body=',request.body );
 	var tNow = new Date();
-	var sTime = tNow.getHours()+':'+tNow.getMinutes()+':'+tNow.getSeconds();
+	var sTime = tNow.getHours()+':'+tNow.getMinutes()+':'+tNow.getSeconds()+':'+tNow.getMilliseconds();
 	var result = {
-		"time": sTime,
+		"fromUIAt": request.body.calledAt,
+    "fromServerAt": sTime,
 		"greet":"Hello from server",
 		"api-message":"POST request to CreateGroup"
 	};
