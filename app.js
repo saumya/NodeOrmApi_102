@@ -20,10 +20,12 @@ const port = 3000;
 //app.use(express.bodyParser());
 //app.use( require('connect').bodyParser() );
 app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 
 //
-//----------------------------------------------------------------------
+//--------------------CORS--------------------------------------------------
 // CORS : enabling 
+/*
 // ref: https://enable-cors.org/
 app.use(function(req, res, next) {
   //res.header("Access-Control-Allow-Origin", "YOUR-DOMAIN.TLD"); // update to match the domain you will make the request from
@@ -34,10 +36,39 @@ app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   next();
 });
-// Adding body-parser
-//app.use(bodyParser.urlencoded({ extended: false }));
-//app.use(bodyParser.json());
-//----------------------------------------------------------------------
+*/
+
+
+
+// ref: https://stackoverflow.com/questions/18310394/no-access-control-allow-origin-node-apache-port-issue
+// Add headers
+app.use(function (req, res, next) {
+    // Website you wish to allow to connect
+    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:1234');
+    // Request methods you wish to allow
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+    // Request headers you wish to allow
+    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type, Accept');
+    // Set to true if you need the website to include cookies in the requests sent
+    // to the API (e.g. in case you use sessions)
+    res.setHeader('Access-Control-Allow-Credentials', true);
+    // Pass to next layer of middleware
+    next();
+});
+
+
+/*
+// npm install --save cors
+//
+const cors = require("cors");
+const corsOptions = {
+    origin: "*", // Or pass origins you want
+    credentials: true
+};
+app.use(cors(corsOptions));
+*/
+
+//--------------------/CORS--------------------------------------------------
 //
 const modelFactory = require('./model/modelFactory');
 modelFactory.initModelFactory(onModelFactoryInitDone,onModelFactoryInitFail);
@@ -57,7 +88,7 @@ function onModelFactoryInitFail(error){
 }
 
 //
-app.get('/', (req, res) => res.send('Hello World!'));
+app.get('/', (req, res) => res.send('Welcome to API Server.'));
 app.get('/initModels', (request,response) => {
 	modelFactory.initTheModels();
 });
@@ -65,7 +96,11 @@ app.post('/createGroup', (request,response)=>{
 	console.log('app.js: API: CreateGroup');
 	//console.log(modelFactory);
 	console.log( 'request.body=',request.body );
+	var tNow = new Date();
+	var sTime = tNow.getHours()+':'+tNow.getMinutes()+':'+tNow.getSeconds();
 	var result = {
+		"time": sTime,
+		"greet":"Hello from server",
 		"api-message":"POST request to CreateGroup"
 	};
 	response.send(result);
