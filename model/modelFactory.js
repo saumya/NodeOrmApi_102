@@ -128,13 +128,27 @@ const createGroupWithName = function(newGroupName){
   ModelBatch.create({
     name:newGroupName
   }).then(function(data){
-    console.log('modelFactory: createGroupWithName: SUCCESS:');
+    console.log('modelFactory : createGroupWithName : SUCCESS:');
     //console.log(data);
   }).catch(function(error){
-    console.log('modelFactory: createGroupWithName: catch:');
+    console.log('modelFactory : createGroupWithName : catch:');
     console.log(error);
   });
   
+}
+
+//getAllGroupNames
+const getAllGroupNames = function(onGotResponseFromModel){
+  console.log('modelFactory : getAllGroupNames');
+
+  var ModelBatch = getBatchModel(sequelize);
+  ModelBatch.findAll().then(function(modelBatches){
+    //console.log(modelBatches);
+    onGotResponseFromModel(modelBatches);
+  }).catch(function(error){
+    console.log('modelFactory : getAllGroupNames : catch:');
+    console.log(error);
+  });
 }
 
 
@@ -142,7 +156,7 @@ module.exports = {
   initModelFactory, 
   getORMRef, 
   initTheModels,
-  createGroupWithName 
+  createGroupWithName, getAllGroupNames 
 };
 
 //

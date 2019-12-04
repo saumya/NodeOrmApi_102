@@ -113,6 +113,28 @@ app.post('/createGroup', (request,response)=>{
 	//
 	//response.send('app.js: POST request to CreateGroup');
 });
+// 
+app.get('/getBatchNames', (req,res) => {
+  console.log('app.js: API: Get BatchNames');
+  //
+  var onGotResponseFromModel = function(allBatches){
+    console.log('app.js: API: onGotResponseFromModel');
+    res.send(allBatches);
+  }
+  //get data from Model
+  modelFactory.getAllGroupNames(onGotResponseFromModel);
+  //
+  
+  //prepare the response
+
+  var tNow = new Date();
+  var sTime = tNow.getHours()+':'+tNow.getMinutes()+':'+tNow.getSeconds()+':'+tNow.getMilliseconds();
+  var result = {
+    "fromServerAt": sTime
+  }
+  //send the response
+  //res.send(result);
+});
 //
 app.listen(port, () => console.log(`My App listening on port ${port}!`));
 //
