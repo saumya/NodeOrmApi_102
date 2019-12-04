@@ -78,8 +78,23 @@ $.ajax({
 
 
 ### API
- 
+
+GET
+
  - /initModels : first call to initialise the Database
+ - /getBatchNames : Get All the Group Names
+
+
+POST
+
+ - /createGroup : Creates a Group
+
+
+
+
+
+
+
 
 
 
