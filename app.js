@@ -136,5 +136,9 @@ app.get('/getBatchNames', (req,res) => {
   //res.send(result);
 });
 //
+app.post('/addPerson', (request,response)=>{
+  response.send({"server":"yey!"});
+});
+//
 app.listen(port, () => console.log(`My App listening on port ${port}!`));
 //
