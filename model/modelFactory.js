@@ -133,6 +133,39 @@ const createGroupWithName = function(newGroupName){
   }).catch(function(error){
     console.log('modelFactory : createGroupWithName : catch:');
     console.log(error);
+  });  
+}
+
+//Create a new Person
+const createPerson = function(newPerson){
+  console.log('modelFactory: createPerson:');
+  console.log('modelFactory: createPerson: person=',newPerson);
+  /*
+  console.log(newPerson.personName);
+  console.log( Number(newPerson.phone) );
+  console.log(newPerson.group); //morning/evening
+  console.log(newPerson.batch); 
+  */
+  var isMorning = false;
+  if(newPerson.group==='morning'){
+    isMorning = true;
+  }
+
+  var newPersonData = {
+    name: newPerson.personName,
+    phone: Number(newPerson.phone),
+    batch_is_morning: isMorning,
+    group_name: newPerson.batch
+  }
+  //console.log('newPersonData=',newPersonData);
+  
+  //console.log(ModelPerson);//null
+  ModelPerson = getPersonModel(sequelize);
+  ModelPerson.create(newPersonData).then(function(data){
+    console.log('modelFactory : createPerson : SUCCESS:');
+  }).catch(function(error){
+    console.log('modelFactory : createPerson : catch:');
+    console.log(error);
   });
   
 }
@@ -156,7 +189,8 @@ module.exports = {
   initModelFactory, 
   getORMRef, 
   initTheModels,
-  createGroupWithName, getAllGroupNames 
+  getAllGroupNames,
+  createGroupWithName, createPerson 
 };
 
 //

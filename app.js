@@ -137,6 +137,9 @@ app.get('/getBatchNames', (req,res) => {
 });
 //
 app.post('/addPerson', (request,response)=>{
+  //console.log( 'request.body=',request.body );
+  modelFactory.createPerson(request.body);
+  //
   response.send({"server":"yey!"});
 });
 //

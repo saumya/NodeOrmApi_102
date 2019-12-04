@@ -17,7 +17,7 @@ const getPersonModel = function(sequelize){
 
 	Person.init({
 		name: Sequelize.STRING,
-		phone: Sequelize.INTEGER,
+		phone: Sequelize.STRING,
 		batch_is_morning: Sequelize.BOOLEAN,
 		group_name: Sequelize.STRING
 	},{
