@@ -95,7 +95,7 @@ app.get('/initModels', (request,response) => {
 app.post('/createGroup', (request,response)=>{
 	console.log('app.js: API: CreateGroup');
 	//console.log(modelFactory);
-	console.log( 'request.body=',request.body );
+	//console.log( 'request.body=',request.body );
   //
   var newGroupName = request.body.groupName;
   //
@@ -134,6 +134,17 @@ app.get('/getBatchNames', (req,res) => {
   }
   //send the response
   //res.send(result);
+});
+// AllPeople in a Batch
+// call: http://localhost:3000/getPeople/myBatchName
+app.get('/getPeople/:groupName', (request,response) => {
+  //
+  console.log('app.js : /getPeople');
+  console.log('request.params=',request.params);
+  //
+  var gName = request.params.groupName;
+  //
+  response.send({"server":"/getPeople yey! "});
 });
 //
 app.post('/addPerson', (request,response)=>{

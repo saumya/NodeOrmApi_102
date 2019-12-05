@@ -11,6 +11,8 @@ const Model = Sequelize.Model;
 // group_name: Nov 2018 | Stored in model.batch 
 // table name is `people` which is generated automatically from `person`
 
+// TODO: batch_id: M5,M22,E3,E24
+
 const getPersonModel = function(sequelize){
 
 	class Person extends Model {}
