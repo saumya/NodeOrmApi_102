@@ -136,15 +136,34 @@ app.get('/getBatchNames', (req,res) => {
   //res.send(result);
 });
 // AllPeople in a Batch
-// call: http://localhost:3000/getPeople/myBatchName
+// eaxmple call URL- http://localhost:3000/getPeople/myBatchName
 app.get('/getPeople/:groupName', (request,response) => {
   //
-  console.log('app.js : /getPeople');
-  console.log('request.params=',request.params);
+  //console.log('app.js : /getPeople');
+  console.log('app.js : /getPeople : request.params=',request.params);
+  var onGotPeopleFromModel = function(allPeople){
+    console.log('app.js: API: onGotPeopleFromModel');
+    /*
+    //console.log(allPeople);
+    console.log(allPeople.length);
+    //res.send(allBatches);
+    */
+    if(allPeople.length>0){
+      /*
+      console.log( allPeople[0].name );
+      console.log( allPeople[0].phone );
+      console.log( allPeople[0].batch_is_morning );
+      */
+      response.send(allPeople);
+    }else{
+      response.send({"result":"No persons!"});
+    }
+  }
   //
   var gName = request.params.groupName;
+  modelFactory.getAllPeopleOfGroup(gName,onGotPeopleFromModel);
   //
-  response.send({"server":"/getPeople yey! "});
+  //response.send({"server":"/getPeople yey! "});
 });
 //
 app.post('/addPerson', (request,response)=>{

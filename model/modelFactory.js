@@ -184,12 +184,24 @@ const getAllGroupNames = function(onGotResponseFromModel){
   });
 }
 
+// getAllPeopleOfAGroup
+const getAllPeopleOfGroup = function(groupName, onGotPeopleFromModel){
+  ModelPerson = getPersonModel(sequelize);
+  ModelPerson.findAll({ where:{ group_name:groupName } }).then(function(modelPeople){
+    //console.log(modelPeople);
+    onGotPeopleFromModel(modelPeople);
+  }).catch(function(error){
+    console.log('modelFactory : getAllPeopleOfGroup : catch:');
+    console.log(error);
+  });
+}
+
 
 module.exports = { 
   initModelFactory, 
   getORMRef, 
   initTheModels,
-  getAllGroupNames,
+  getAllGroupNames, getAllPeopleOfGroup,
   createGroupWithName, createPerson 
 };
 
