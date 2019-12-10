@@ -90,6 +90,7 @@ POST
 
  - /createGroup : Creates a New Group
  - /addPerson : Creates a New Person
+ - /markPersonPresent : Marks present for a person
 
 
 

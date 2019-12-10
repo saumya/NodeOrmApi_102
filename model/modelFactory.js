@@ -170,6 +170,42 @@ const createPerson = function(newPerson){
   
 }
 
+// Create a Presence
+// Add an entry in the attendance sheet
+const createPresence = function( newPresence ){
+  console.log('modelFactory : createPresence : ');
+  const pTime = newPresence.batchTime;
+  var pOnMorning = false;
+  var pOnEvening = false;
+  if(pTime == "evening"){
+    pOnMorning = false;
+    pOnEvening = true;
+  }else{
+    pOnMorning = true;
+    pOnEvening = false;
+  }
+  const pData = {
+    nameOfPerson: newPresence.person.name,
+    idOfPerson: newPresence.person.id,
+    date: newPresence.onDate,
+    isOnMorning: pOnMorning,
+    isOnEvening: pOnEvening,
+    isAbsent: false,
+    isCalled: false,
+    callResponse: ''
+  }
+
+  ModelPresent = getPresentModel(sequelize);
+  ModelPresent.create(pData).then(function(data){
+    console.log('modelFactory : createPresence : SUCCESS ');
+  }).catch(function(error){
+    console.log('modelFactory : createPresence : ERROR ');
+    console.log(error);
+    console.log('modelFactory : createPresence : ERROR / ');
+  });
+}
+
+
 //getAllGroupNames
 const getAllGroupNames = function(onGotResponseFromModel){
   console.log('modelFactory : getAllGroupNames');
@@ -202,7 +238,7 @@ module.exports = {
   getORMRef, 
   initTheModels,
   getAllGroupNames, getAllPeopleOfGroup,
-  createGroupWithName, createPerson 
+  createGroupWithName, createPerson, createPresence 
 };
 
 //

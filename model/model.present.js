@@ -15,6 +15,7 @@ const getPresentModel = function(sequelize){
 
 	Present.init({
 		nameOfPerson: Sequelize.STRING,
+		idOfPerson: Sequelize.INTEGER,
 		date: Sequelize.DATEONLY,
 		isOnMorning: Sequelize.BOOLEAN,
 		isOnEvening: Sequelize.BOOLEAN,

@@ -91,6 +91,7 @@ function onModelFactoryInitFail(error){
 app.get('/', (req, res) => res.send('Welcome to API Server.'));
 app.get('/initModels', (request,response) => {
 	modelFactory.initTheModels();
+  response.send('Model Initiation. SUCCESS.');
 });
 app.post('/createGroup', (request,response)=>{
 	console.log('app.js: API: CreateGroup');
@@ -171,6 +172,14 @@ app.post('/addPerson', (request,response)=>{
   modelFactory.createPerson(request.body);
   //
   response.send({"server":"yey!"});
+});
+// Mark present
+app.post('/markPersonPresent', (request,response)=>{
+  console.log('app.js : /markPersonPresent :');
+  //console.log(request.body);
+  modelFactory.createPresence(request.body);
+  //
+  response.send(request.body);
 });
 //
 app.listen(port, () => console.log(`My App listening on port ${port}!`));
