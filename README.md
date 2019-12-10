@@ -82,12 +82,14 @@ $.ajax({
 GET
 
  - /initModels : first call to initialise the Database
- - /getBatchNames : Get All the Group Names
 
+ - /getBatchNames : Get All the Group Names
+ - /getPeople/:groupName : All people of a Group (Ex: Nov 2018)
 
 POST
 
- - /createGroup : Creates a Group
+ - /createGroup : Creates a New Group
+ - /addPerson : Creates a New Person
 
 
 
