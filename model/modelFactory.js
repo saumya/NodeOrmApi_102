@@ -170,6 +170,26 @@ const createPerson = function(newPerson){
   
 }
 
+// Create Date
+const createDate = function(oneDay){
+  console.log('modelFactory : createDate : ');
+  console.log(oneDay);
+  console.log('TODO: Save in DB');
+
+  ModelDay = getDayModel(sequelize);
+  ModelDay.create({name:oneDay.day,date:new Date(oneDay.date)})
+  .then(function(result){
+    console.log('modelFactory : createDate : SUCCESS -----');
+    //console.log(result);
+    //console.log('modelFactory : createDate : SUCCESS / ---');
+  })
+  .catch(function(error){
+    console.log('modelFactory : createDate : ERROR -----');
+    console.log(error);
+    console.log('modelFactory : createDate : ERROR / ---');
+  });
+}
+
 // Create a Presence
 // Add an entry in the attendance sheet
 const createPresence = function( newPresence ){
@@ -238,7 +258,7 @@ module.exports = {
   getORMRef, 
   initTheModels,
   getAllGroupNames, getAllPeopleOfGroup,
-  createGroupWithName, createPerson, createPresence 
+  createGroupWithName, createPerson, createDate, createPresence 
 };
 
 //

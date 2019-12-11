@@ -5,9 +5,9 @@
 // PUT for UPDATE 
 //
 //
-console.log('+---------------------------');
+console.log('+-----------------------------------------');
 console.log('| Application: Init');
-console.log('+---------------------------');
+console.log('+-----------------------------------------');
 
 const express = require('express');
 const app = express();
@@ -75,6 +75,9 @@ modelFactory.initModelFactory(onModelFactoryInitDone,onModelFactoryInitFail);
 
 function onModelFactoryInitDone(sequelize){
     console.log('app.js: onModelFactoryInitDone');
+    console.log('+-----------------------------------------');
+    console.log('| Application: Init : Done ');
+    console.log('+-----------------------------------------');
     //console.log('sequelize',sequelize);
     
     //sequelize = modelFactory.getORMRef();
@@ -172,6 +175,24 @@ app.post('/addPerson', (request,response)=>{
   modelFactory.createPerson(request.body);
   //
   response.send({"server":"yey!"});
+});
+//
+app.post('/addDates',(req,res)=>{
+  console.log('/addDates');
+  //console.log(req.body);
+  //
+  var allDays = req.body;
+  //
+  for (item in allDays){ console.log(item,allDays[item]) 
+    modelFactory.createDate({
+      "day": item,
+      "date": allDays[item]
+    });
+  }
+  //
+  //modelFactory.createDate({"day": "day1", "date": allDays.day1});
+  //
+  res.send({"server":"Yay!"});
 });
 // Mark present
 app.post('/markPersonPresent', (request,response)=>{
