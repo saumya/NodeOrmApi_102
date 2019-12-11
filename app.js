@@ -170,6 +170,22 @@ app.get('/getPeople/:groupName', (request,response) => {
   //response.send({"server":"/getPeople yey! "});
 });
 //
+app.get('/getDays/:groupName',(request,response)=>{
+  // Response Callback
+  var onGotDaysFromModel = function(allDays){
+    //console.log(allDays);
+    //response.send(allDays);
+    if(allDays.length>0){
+      response.send(allDays);
+    }else{
+      response.send({"result":"No Days!"});
+    }
+  }
+  // Server Call
+  var gName = request.params.groupName;
+  modelFactory.getAllDaysOfGroup(gName,onGotDaysFromModel);
+});
+//
 app.post('/addPerson', (request,response)=>{
   //console.log( 'request.body=',request.body );
   modelFactory.createPerson(request.body);

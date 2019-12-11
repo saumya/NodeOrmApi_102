@@ -259,12 +259,27 @@ const getAllPeopleOfGroup = function(groupName, onGotPeopleFromModel){
   });
 }
 
+// getAllDaysOfAGroup
+const getAllDaysOfGroup = function(groupName,callback){
+  ModelDay = getDayModel(sequelize);
+  ModelDay.findAll({ where:{ batchName:groupName } })
+  .then(function(result){
+    console.log('modelFactory : getAllDaysOfGroup : result:');
+    //console.log(result);
+    callback(result);
+  })
+  .catch(function(error){
+    console.log('modelFactory : getAllDaysOfGroup : catch:');
+    console.log(error);
+  });
+}
+
 
 module.exports = { 
   initModelFactory, 
   getORMRef, 
   initTheModels,
-  getAllGroupNames, getAllPeopleOfGroup,
+  getAllGroupNames, getAllPeopleOfGroup, getAllDaysOfGroup,
   createGroupWithName, createPerson, createDate, createPresence 
 };
 
