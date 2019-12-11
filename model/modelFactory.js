@@ -176,8 +176,15 @@ const createDate = function(oneDay){
   console.log(oneDay);
   console.log('TODO: Save in DB');
 
+  //var bId = Number(oneDay.batchId);
+
   ModelDay = getDayModel(sequelize);
-  ModelDay.create({name:oneDay.day,date:new Date(oneDay.date)})
+  ModelDay.create({
+    name: oneDay.day,
+    date: new Date(oneDay.date),
+    batchName: oneDay.batchName,
+    batchId: oneDay.batchId
+  })
   .then(function(result){
     console.log('modelFactory : createDate : SUCCESS -----');
     //console.log(result);

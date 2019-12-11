@@ -181,10 +181,14 @@ app.post('/addDates',(req,res)=>{
   console.log('/addDates');
   //console.log(req.body);
   //
-  var allDays = req.body;
+  var batchId = req.body.batchId;
+  var batchName = req.body.batchName;
+  var allDays = req.body.days;
   //
   for (item in allDays){ console.log(item,allDays[item]) 
     modelFactory.createDate({
+      "batchName": batchName,
+      "batchId": batchId,
       "day": item,
       "date": allDays[item]
     });

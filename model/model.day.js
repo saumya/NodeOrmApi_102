@@ -14,7 +14,9 @@ const getDayModel = function(sequelize){
 
 	Day.init({
 		name: Sequelize.STRING,
-		date: Sequelize.DATEONLY
+		date: Sequelize.DATEONLY,
+		batchName: Sequelize.STRING,
+		batchId: Sequelize.STRING
 	},{
 		sequelize: sequelize,
 		modelName: 'day',
