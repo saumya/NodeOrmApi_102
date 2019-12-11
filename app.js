@@ -91,31 +91,13 @@ function onModelFactoryInitFail(error){
 }
 
 //
+// ------------------------------- GET -----------------------------------
+//
 app.get('/', (req, res) => res.send('Welcome to API Server.'));
+//
 app.get('/initModels', (request,response) => {
-	modelFactory.initTheModels();
+  modelFactory.initTheModels();
   response.send('Model Initiation. SUCCESS.');
-});
-app.post('/createGroup', (request,response)=>{
-	console.log('app.js: API: CreateGroup');
-	//console.log(modelFactory);
-	//console.log( 'request.body=',request.body );
-  //
-  var newGroupName = request.body.groupName;
-  //
-  modelFactory.createGroupWithName(newGroupName);
-  //
-	var tNow = new Date();
-	var sTime = tNow.getHours()+':'+tNow.getMinutes()+':'+tNow.getSeconds()+':'+tNow.getMilliseconds();
-	var result = {
-		"fromUIAt": request.body.calledAt,
-    "fromServerAt": sTime,
-		"greet":"Hello from server",
-		"api-message":"POST request to CreateGroup"
-	};
-	response.send(result);
-	//
-	//response.send('app.js: POST request to CreateGroup');
 });
 // 
 app.get('/getBatchNames', (req,res) => {
@@ -185,6 +167,31 @@ app.get('/getDays/:groupName',(request,response)=>{
   var gName = request.params.groupName;
   modelFactory.getAllDaysOfGroup(gName,onGotDaysFromModel);
 });
+// ------------------------------- GET / -----------------------------------
+//
+// ------------------------------- POST -----------------------------------
+//
+app.post('/createGroup', (request,response)=>{
+  console.log('app.js: API: CreateGroup');
+  //console.log(modelFactory);
+  //console.log( 'request.body=',request.body );
+  //
+  var newGroupName = request.body.groupName;
+  //
+  modelFactory.createGroupWithName(newGroupName);
+  //
+  var tNow = new Date();
+  var sTime = tNow.getHours()+':'+tNow.getMinutes()+':'+tNow.getSeconds()+':'+tNow.getMilliseconds();
+  var result = {
+    "fromUIAt": request.body.calledAt,
+    "fromServerAt": sTime,
+    "greet":"Hello from server",
+    "api-message":"POST request to CreateGroup"
+  };
+  response.send(result);
+  //
+  //response.send('app.js: POST request to CreateGroup');
+});
 //
 app.post('/addPerson', (request,response)=>{
   //console.log( 'request.body=',request.body );
@@ -222,6 +229,7 @@ app.post('/markPersonPresent', (request,response)=>{
   //
   response.send(request.body);
 });
+// ------------------------------- POST / -----------------------------------
 //
 app.listen(port, () => console.log(`My App listening on port ${port}!`));
 //
