@@ -252,5 +252,7 @@ app.post('/markPersonPresent', (request,response)=>{
 });
 // ------------------------------- POST / -----------------------------------
 //
-app.listen(port, () => console.log(`My App listening on port ${port}!`));
+//app.listen(port, () => console.log(`My App listening on port ${port}!`));
+// fixing for Heroku
+app.listen( process.env.PORT || port , () => console.log(`My App listening on port ${port}!`) );
 //
