@@ -167,6 +167,27 @@ app.get('/getDays/:groupName',(request,response)=>{
   var gName = request.params.groupName;
   modelFactory.getAllDaysOfGroup(gName,onGotDaysFromModel);
 });
+//
+app.get('/getPresence/:groupName/:forDate/:sessionName',(request,response)=>{
+  //
+  var sGroup = request.params.groupName;
+  var sDate = request.params.forDate;
+  var sSessionName = request.params.sessionName;
+  //
+  console.log(request.params);
+
+  const onGotPresents = function(allPresents){
+    response.send(allPresents);
+  }
+  modelFactory.getPresentsForTheDate({
+    "groupName": sGroup,
+    "sDate": sDate,
+    "session": sSessionName
+  },onGotPresents);
+  //
+  //response.send({"result":"Yay!"});
+});
+//
 // ------------------------------- GET / -----------------------------------
 //
 // ------------------------------- POST -----------------------------------

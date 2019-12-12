@@ -274,12 +274,32 @@ const getAllDaysOfGroup = function(groupName,callback){
   });
 }
 
+// Get all the presence for the day
+const getPresentsForTheDate = function(queryObj,callback){
+  ModelPresent = getPresentModel(sequelize);
+  //
+  var group = queryObj.groupName;
+  var dDate = new Date(queryObj.sDate);
+  var sSession = queryObj.session;
+  //
+  ModelPresent.findAll({
+    where:{
+      date: dDate
+    }
+  }).then(function(result){
+    callback(result);
+  }).catch(function(error){
+    console.log('modelFactory : getPresentsForTheDate : catch:');
+    console.log(error);
+  });
+}
+
 
 module.exports = { 
   initModelFactory, 
   getORMRef, 
   initTheModels,
-  getAllGroupNames, getAllPeopleOfGroup, getAllDaysOfGroup,
+  getAllGroupNames, getAllPeopleOfGroup, getAllDaysOfGroup, getPresentsForTheDate,
   createGroupWithName, createPerson, createDate, createPresence 
 };
 
