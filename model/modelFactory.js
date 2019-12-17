@@ -137,9 +137,9 @@ const createGroupWithName = function(newGroupName){
 }
 
 //Create a new Person
-const createPerson = function(newPerson){
+const createPerson = function(newPerson, callback){
   console.log('modelFactory: createPerson:');
-  console.log('modelFactory: createPerson: person=',newPerson);
+  //console.log('modelFactory: createPerson: person=',newPerson);
   /*
   console.log(newPerson.personName);
   console.log( Number(newPerson.phone) );
@@ -162,10 +162,12 @@ const createPerson = function(newPerson){
   //console.log(ModelPerson);//null
   ModelPerson = getPersonModel(sequelize);
   ModelPerson.create(newPersonData).then(function(data){
-    console.log('modelFactory : createPerson : SUCCESS:');
+    //console.log('modelFactory : createPerson : SUCCESS:');
+    callback({'result':'SUCCESS', 'resultData': data});
   }).catch(function(error){
-    console.log('modelFactory : createPerson : catch:');
-    console.log(error);
+    //console.log('modelFactory : createPerson : catch:');
+    //console.log(error);
+    callback({'result':'FAIL', 'resultData': error});
   });
   
 }

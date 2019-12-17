@@ -216,9 +216,17 @@ app.post('/createGroup', (request,response)=>{
 //
 app.post('/addPerson', (request,response)=>{
   //console.log( 'request.body=',request.body );
-  modelFactory.createPerson(request.body);
   //
-  response.send({"server":"yey!"});
+  var onPersonCreationResult = function(resultData){
+    //console.log('onPersonCreationResult');
+    //console.log( resultData );
+
+    response.send(resultData);
+  }
+  //
+  modelFactory.createPerson( request.body, onPersonCreationResult );
+  //
+  //response.send({"server":"yey!"});
 });
 //
 app.post('/addDates',(req,res)=>{
