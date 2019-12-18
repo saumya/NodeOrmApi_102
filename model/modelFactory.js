@@ -220,7 +220,7 @@ const createDatesOfBatch = function(allDates,callback){
 
 // Create a Presence
 // Add an entry in the attendance sheet
-const createPresence = function( newPresence ){
+const createPresence = function( newPresence, callback ){
   console.log('modelFactory : createPresence : ');
   const pTime = newPresence.batchTime;
   var pOnMorning = false;
@@ -245,11 +245,13 @@ const createPresence = function( newPresence ){
 
   ModelPresent = getPresentModel(sequelize);
   ModelPresent.create(pData).then(function(data){
-    console.log('modelFactory : createPresence : SUCCESS ');
+    //console.log('modelFactory : createPresence : SUCCESS ');
+    callback( { 'result': 'SUCCESS', 'data' : data } );
   }).catch(function(error){
     console.log('modelFactory : createPresence : ERROR ');
     console.log(error);
     console.log('modelFactory : createPresence : ERROR / ');
+    callback( { 'result': 'FAIL', 'data' : error } );
   });
 }
 

@@ -273,9 +273,12 @@ app.post('/addDates',(req,res)=>{
 app.post('/markPersonPresent', (request,response)=>{
   console.log('app.js : /markPersonPresent :');
   //console.log(request.body);
-  modelFactory.createPresence(request.body);
+  const onPresentMarkingDone = function(result){
+    response.send( result );
+  }
+  modelFactory.createPresence( request.body, onPresentMarkingDone );
   //
-  response.send(request.body);
+  //response.send(request.body);
 });
 // ------------------------------- POST / -----------------------------------
 //
