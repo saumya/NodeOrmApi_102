@@ -198,6 +198,25 @@ const createDate = function(oneDay){
     console.log('modelFactory : createDate : ERROR / ---');
   });
 }
+// Create Dates
+// Multiple Date creation
+const createDatesOfBatch = function(allDates,callback){
+  console.log('createDatesOfBatch');
+  //console.log( allDates );
+
+  ModelDay = getDayModel(sequelize);
+  ModelDay.bulkCreate(allDates)
+  .then(function(result){
+    console.log('createDatesOfBatch : Result');
+    //console.log(result);
+    callback({'result':'SUCCESS','message':'Created the dates for the batch.'});
+  })
+  .catch(function(error){
+    console.log('createDatesOfBatch : Error')
+    //console.log(error);
+    callback({'result':'FAIL','message':error});
+  });
+}
 
 // Create a Presence
 // Add an entry in the attendance sheet
@@ -302,7 +321,7 @@ module.exports = {
   getORMRef, 
   initTheModels,
   getAllGroupNames, getAllPeopleOfGroup, getAllDaysOfGroup, getPresentsForTheDate,
-  createGroupWithName, createPerson, createDate, createPresence 
+  createGroupWithName, createPerson, createDate, createDatesOfBatch, createPresence 
 };
 
 //

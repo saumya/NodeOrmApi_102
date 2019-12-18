@@ -237,7 +237,9 @@ app.post('/addDates',(req,res)=>{
   var batchName = req.body.batchName;
   var allDays = req.body.days;
   //
-  for (item in allDays){ console.log(item,allDays[item]) 
+  /*
+  for (item in allDays){ 
+    //console.log(item,allDays[item]) 
     modelFactory.createDate({
       "batchName": batchName,
       "batchId": batchId,
@@ -245,10 +247,27 @@ app.post('/addDates',(req,res)=>{
       "date": allDays[item]
     });
   }
+  */
+ var aDays = [];
+ for (item in allDays){ 
+    //console.log(item,allDays[item])
+    aDays.push( {
+        "name" : item,
+        "batchName" : batchName,
+        "batchId" : batchId,
+        "date" : allDays[item]
+      } );
+  }
   //
-  //modelFactory.createDate({"day": "day1", "date": allDays.day1});
+  const onAllDatesAdded = function(result){
+    res.send(result);
+  }
+
+  modelFactory.createDatesOfBatch( aDays, onAllDatesAdded );
+
+  //modelFactory.createDatesOfBatch(allDays, onAllDatesAdded);
   //
-  res.send({"server":"Yay!"});
+  //res.send({"server":"Yay!"});
 });
 // Mark present
 app.post('/markPersonPresent', (request,response)=>{
