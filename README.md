@@ -4,6 +4,9 @@ Remote MySQL
  - Moved to [mysql2][2] from [mysql][1]. 
  - ORM used is [Sequelize][3] version 5.
 
+### TODO
+ - Need to check for duplication of data in database
+
 
 ```
 npm install --save mysql2
